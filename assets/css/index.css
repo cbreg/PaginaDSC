@@ -57,7 +57,15 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+ul{
+	text-align: left;
+    list-style: none;
+    color: white;
+}
 
+ul li{
+    padding: 5px;
+}
 .wrapper{
     max-width: 70%;
     margin: auto;
@@ -88,16 +96,6 @@ input[type=text], select {
     max-width: 20%;
     width: auto;
     height: auto;
-    padding: 5px;
-}
-
-ul{
-	text-align: left;
-    list-style: none;
-    color: white;
-}
-
-ul li{
     padding: 5px;
 }
 .menu{
@@ -138,7 +136,7 @@ ul li{
 
 .main-lateral{
     float: right;
-	width: 18%;
+	width: 17%;
     text-align: right;
     margin-right:5px;
     margin-top:5px;
@@ -150,8 +148,8 @@ ul li{
     padding: 5px;
     margin: 5px;
     width: 80%;
+    color: White;
 }
-  
 .noticia{
     float: left;
 }
