@@ -22,7 +22,7 @@ h2{
     padding-left: 10px;
 	padding-top: 5px;
 	font-family: Arial, Helvetica, sans-serif;
-	color: #00549a;
+	color: #1679B2;
 	font-size: 16px;
 	font-style: bold;
 	font-variant: small-caps;
@@ -38,7 +38,7 @@ p{
 	margin-top: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	color: #00549a;
+	color: #1679B2;
 	text-align: justify;
 }
 label{
@@ -93,7 +93,7 @@ main{
 
 article{
 	text-decoration: none;
-    color: #00549a;
+    color: #1679B2;
     float: left;
     background-color: #e6f0f6;
     width: 80%;
