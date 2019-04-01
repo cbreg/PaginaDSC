@@ -84,6 +84,16 @@ main{
     margin-top:-600px;
     background-color:white;
 }
+
+article{
+	text-decoration: none;
+    color: #00549a;
+    float: left;
+    background-color: #e6f0f6;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
 .wrapper{
     max-width: 70%;
     margin: auto;
@@ -124,17 +134,6 @@ main{
     list-style: none;
 	text-decoration: blink;
 	font-weight: bolder;
-}
-
-
-.conteudo-main{
-	text-decoration: none;
-    color: #00549a;
-    float: left;
-    background-color: #e6f0f6;
-    width: 80%;
-    margin-top: 10px;
-    margin-left: 10px;
 }
 
 .main-lateral{
