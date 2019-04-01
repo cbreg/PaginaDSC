@@ -25,25 +25,27 @@
         <div class="lateral">
             <nav>
                 <ul>
-                    <li class="menu-selecionado">Home</li>
-                    <li>Câmaras</li>
-                    <li>Disciplinas</li>
-                    <li>Grupos de pesquisa</li>
-                    <li>Horários</li>
-                    <li>Infraestrutura</li>
-                    <li>Monitores</li>
-                    <li>Notícias</li>
-                    <li>Professores</li>
-                    <li>Quem Somos</li>
-                    <li>Serviços</li>
-                    <li>TCC</li>
+                    <li class="menu-selecionado"><a href="#">Home</a></li>
+                    <li><a href="#">Câmaras</a></li>
+                    <li><a href="#">Disciplinas</a></li>
+                    <li><a href="#">Grupos de pesquisa</a></li>
+                    <li><a href="#">Horários</a></li>
+                    <li><a href="#">Infraestrutura</a></li>
+                    <li><a href="#">Monitores</a></li>
+                    <li><a href="#">Notícias</a></li>
+                    <li><a href="#">Professores</a></li>
+                    <li><a href="#">Quem Somos</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">TCC</a></li>
                 </ul>
             </nav>
             <div class="area-restrita">
-                <label><b><i>Área restrita:</i></b></label>
-                <input type="text" placeholder="Usuário">
-                <input type="text" placeholder="Senha">
-                <button class="btn-login"><b>Efetuar login</b></button>
+                <form id="login" onSubmit="return submitcheck(this);">
+                    <label><b><i>Área restrita:</i></b></label>
+                    <input type="text" id="usuario" placeholder="Usuário">
+                    <input type="password" id="senha" placeholder="Senha">
+                    <input type="submit" class="btn-login" value="Efetuar login">
+                </form>
             </div>
         </div>
         <main>
@@ -72,5 +74,6 @@
             </div>
         </main>
     </div>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

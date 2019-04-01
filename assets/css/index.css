@@ -47,7 +47,7 @@ label{
     padding: 5px;
 }
 
-input[type=text], select {
+input[type=text], input[type=password] {
     width: 80%;
     height: 30px;
     padding: 5px;
@@ -65,6 +65,12 @@ ul{
 
 ul li{
     padding: 5px;
+}
+a{
+ color: white;
+}
+a:hover {
+    font-weight:bold;
 }
 
 nav{
