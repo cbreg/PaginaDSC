@@ -1,0 +1,12 @@
+table{
+    margin-left: 30%;
+}
+td:hover{
+    border: 1px solid pink;
+
+}
+td img{
+    width: 150px;
+    height: 150px;
+}
+

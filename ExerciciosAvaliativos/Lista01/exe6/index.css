@@ -1,0 +1,20 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input {
+    vertical-align: middle;
+    margin: 5px 5px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+} 
+input[type=submit]{
+    background-color:pink;
+    border-color: pink;
+    color:white;
+}
+.required:before {
+    content: "*";
+    color:red;
+}

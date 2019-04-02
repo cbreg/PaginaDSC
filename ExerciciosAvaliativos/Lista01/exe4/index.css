@@ -1,0 +1,30 @@
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1{
+  color:pink;
+}
+
+section, header{
+  margin-left: 40%;
+}
+
+th{
+    background-color:pink;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+th {
+  background-color: pink;
+  color: white;
+}
