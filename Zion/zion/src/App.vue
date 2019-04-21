@@ -6,7 +6,7 @@
       </div>
       <div class="form">
         <md-field>
-          <label>Usuário</label>
+          <label class="md-accent">Usuário</label>
           <md-input v-model="login.user" autofocus></md-input>
         </md-field>
         <md-field md-has-password>
@@ -15,16 +15,16 @@
         </md-field>
       <md-checkbox v-model="array" value="1">Lembrar senha</md-checkbox>
       </div>
-      <div class="md-body-3">Essa é uma plataforma de apoio a células 
-                            em faculdades e escolas.
-                            Aqui você pode compartilhar e 
-                            consultar conteúdos excluisivos
-                            para ajudar em sua célula. 
-                            Crie uma conta e aproveite!
-      </div>
+      <label>Essa é uma plataforma de apoio a células 
+                          em faculdades e escolas.
+                          Aqui você pode compartilhar e 
+                          consultar conteúdos excluisivos
+                          para ajudar em sua célula. 
+                          Crie uma conta e aproveite!
+        </label>
       <div class="actions md-layout md-alignment-center-space-between">
         <a href="/resetpassword">CRIAR CONTA</a>
-        <md-button class="md-raised md-primary" @click="auth">ENTRAR</md-button>
+        <md-button class="md-raised md-accent" @click="auth">ENTRAR</md-button>
       </div>
       <div class="loading-overlay" v-if="loading">
         <md-progress-spinner md-mode="indeterminate" :md-stroke="2"></md-progress-spinner>
@@ -60,6 +60,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme("default", (
+  primary: md-get-palette-color(black, A200), 
+  accent: md-get-palette-color(deeporange, 500) 
+));
+
+@import "~vue-material/dist/theme/all";
 .centered-container {
   display: flex;
   align-items: center;
