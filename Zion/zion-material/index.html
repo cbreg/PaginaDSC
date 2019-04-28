@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
+  </head>
+  <style lang="scss" scoped>
+    .card-expansion {
+      height: 480px;
+    }
+  
+    .md-card {
+      width: 320px;
+      margin: 4px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    img {
+     text-align: center;
+     margin-bottom: 30px;
+     margin-bottom: 16px;
+     max-width: 80px;
+    }
+    .background {
+      background-color: black; 
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+        <template>
+            <form novalidate class="md-layout" @submit.prevent="validateUser">
+            <md-card>
+                <md-card-header>
+                  <div class="title"><img src="./assets/img/logo_preto.png"></div>
+                </md-card-header>
+                <md-card-content>
+                    <div>
+                        <md-field :class="getValidationClass('usuario')">
+                          <label for="usuario">Usuário</label>
+                          <md-input name="usuario" id="usuario" autocomplete="given-name" v-model="form.usuario" :disabled="sending" />
+                          <span class="md-error" v-if="!$v.form.usuario.required"></span>
+                          <span class="md-error" v-else-if="!$v.form.usuario.minlength">Usuário inválido</span>
+                        </md-field>
+                        <md-field :class="getValidationClass('senha')">
+                          <label for="senha">Senha</label>
+                          <md-input  type="password" name="senha" id="senha" autocomplete="family-name" v-model="form.senha" :disabled="sending" />
+                          <span class="md-error" v-if="!$v.form.senha.required">The last name is required</span>
+                          <span class="md-error" v-else-if="!$v.form.senha.minlength">Invalid last name</span>
+                        </md-field>
+                    </div>
+                </md-card-content>
+                <md-card-expand>
+                  <md-card-actions md-alignment="space-between">
+                    <div>
+                      <md-button>CRIAR CONTA</md-button>
+                    </div>
+          
+                    <div>
+                      <md-button  type="submit" class="md-raised md-accent" :disabled="sending">ENTRAR</md-button>
+                    </div>
+                  </md-card-actions>
+                </md-card-expand>
+              </md-card>
+            </form>
+          </template>
+         <div class="background"></div>
+    </div>
+  </template>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material@beta"></script>
+    <script src="assets/js/vuelidate/validators.min.js"></script>
+    <script src="assets/js/vuelidate/vuelidate.min.js"></script>
+    <script src="assets/js/index.js"></script>
+    
+  </body>
+</html>
