@@ -1,87 +1,189 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
-    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/vue-material.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
-  </head>
-  <style lang="scss" scoped>
-    .card-expansion {
-      height: 480px;
-    }
-  
-    .md-card {
-      width: 320px;
-      margin: 4px;
-      display: inline-block;
-      vertical-align: top;
-    }
-    img {
-     text-align: center;
-     margin-bottom: 30px;
-     margin-bottom: 16px;
-     max-width: 80px;
-    }
-    .background {
-      background-color: black; 
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: 0;
-    }
-  </style>
-  <body>
-    <div id="app">
-        <template>
-            <form novalidate class="md-layout" @submit.prevent="validateUser">
-            <md-card>
-                <md-card-header>
-                  <div class="title"><img src="./assets/img/logo_preto.png"></div>
-                </md-card-header>
-                <md-card-content>
-                    <div>
-                        <md-field :class="getValidationClass('usuario')">
-                          <label for="usuario">Usuário</label>
-                          <md-input name="usuario" id="usuario" autocomplete="given-name" v-model="form.usuario" :disabled="sending" />
-                          <span class="md-error" v-if="!$v.form.usuario.required"></span>
-                          <span class="md-error" v-else-if="!$v.form.usuario.minlength">Usuário inválido</span>
-                        </md-field>
-                        <md-field :class="getValidationClass('senha')">
-                          <label for="senha">Senha</label>
-                          <md-input  type="password" name="senha" id="senha" autocomplete="family-name" v-model="form.senha" :disabled="sending" />
-                          <span class="md-error" v-if="!$v.form.senha.required">The last name is required</span>
-                          <span class="md-error" v-else-if="!$v.form.senha.minlength">Invalid last name</span>
-                        </md-field>
-                    </div>
-                </md-card-content>
-                <md-card-expand>
-                  <md-card-actions md-alignment="space-between">
-                    <div>
-                      <md-button>CRIAR CONTA</md-button>
-                    </div>
-          
-                    <div>
-                      <md-button  type="submit" class="md-raised md-accent" :disabled="sending">ENTRAR</md-button>
-                    </div>
-                  </md-card-actions>
-                </md-card-expand>
-              </md-card>
-            </form>
-          </template>
-         <div class="background"></div>
-    </div>
-  </template>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/vue-material@beta"></script>
-    <script src="assets/js/vuelidate/validators.min.js"></script>
-    <script src="assets/js/vuelidate/vuelidate.min.js"></script>
-    <script src="assets/js/index.js"></script>
-    
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+  <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
+  <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
+  <link rel="stylesheet" href="assets/plugins/vue-material/theme/engine.scss">
+  <link rel="stylesheet" href="assets/plugins/vue-material/theme/all.scss">
+</head>
+<style lang="scss" scoped>
+  .md-accent {
+    background-color: #FF8000 !important;
+  }
+
+  .md-card.md-theme-default {
+    width: 700px;
+    display: inline-block;
+    vertical-align: top;
+
+  }
+
+  img {
+    margin-bottom: 16px;
+    max-width: 80px;
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  form {
+    margin-bottom: 60px;
+  }
+
+  body {
+    background-color: black;
+  }
+
+  .md-content {
+    z-index: 1;
+    padding: 40px;
+    width: 100%;
+    position: relative;
+  }
+
+  .centered-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    margin-left: 30%;
+  }
+
+  /* The container */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .container:hover input~.checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked~.checkmark {
+    background-color: #FF8000;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  .container input:checked~.checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  p {
+    color: grey;
+    font-size: 12px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <template>
+      <div class="centered-container">
+        <form novalidate class="md-layout" @submit.prevent="validateUser">
+          <md-card class="md-layout-item md-size-50 md-small-size-100">
+            <md-card-header>
+              <div class="title"><img src="./assets/img/logo_preto.png"></div>
+            </md-card-header>
+            <md-card-content>
+              <md-field :class="getValidationClass('user')">
+                <label for="first-name">Usuário</label>
+                <md-input name="first-name" id="first-name" autocomplete="given-name" v-model="form.user"
+                  :disabled="sending"></md-input>
+                <span class="md-error" v-if="!$v.form.user.required">Usuário é obrigatório</span>
+              </md-field>
+              <md-field :class="getValidationClass('password')">
+                <label for="last-name">Senha</label>
+                <md-input name="last-name" type="password" id="last-name" autocomplete="family-name"
+                  v-model="form.password" :disabled="sending"></md-input>
+                <span class="md-error" v-if="!$v.form.password.required">Senha é obrigatória</span>
+              </md-field>
+              <label class="container">Lembrar senha
+                <input type="checkbox">
+                <span class="checkmark"></span>
+              </label>
+              <p>Essa é uma plataforma de apoio a células
+                em faculdades e escolas. </br>
+                Aqui você pode compartilhar e
+                consultar conteúdos excluisivos
+                para ajudar em sua célula. </br>
+                Crie uma conta e aproveite!
+              </p>
+            </md-card-content>
+            <md-progress-bar md-mode="indeterminate" v-if="sending"> </md-progress-bar>
+            <md-card-actions md-alignment="space-between">
+              <div>
+                <md-button>CRIAR CONTA</md-button>
+              </div>
+              <div>
+                <md-button type="submit" class="md-raised md-accent" :disabled="sending">ENTRAR</md-button>
+              </div>
+            </md-card-actions>
+            <md-snackbar :md-active.sync="userSaved">Usuário {{ lastUser }} logado com sucesso!</md-snackbar>
+          </md-card>
+        </form>
+      </div>
+    </template>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="assets/plugins/vue-material/vue-material.min.js"></script>
+  <script src="assets/plugins/vuelidate/validators.min.js"></script>
+  <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
+  <script src="assets/js/index.js"></script>
+
+</body>
+
 </html>

@@ -11,8 +11,8 @@ new Vue({
     mixins: [validationMixin],
     data: () => ({
       form: {
-        usuario: null,
-        senha: null,
+        user: null,
+        password: null,
       },
       userSaved: false,
       sending: false,
@@ -20,13 +20,11 @@ new Vue({
     }),
     validations: {
       form: {
-        usuario: {
-          required,
-          minLength: minLength(3)
+        user: {
+          required
         },
-        senha: {
-          required,
-          minLength: minLength(3)
+        password: {
+          required
         }
       }
     },
@@ -42,15 +40,15 @@ new Vue({
       },
       clearForm () {
         this.$v.$reset()
-        this.form.usuario = null
-        this.form.senha = null
+        this.form.user = null
+        this.form.password = null
       },
       saveUser () {
         this.sending = true
 
         // Instead of this timeout, here you can call your API
         window.setTimeout(() => {
-          this.lastUser = `${this.form.usuario} ${this.form.senha}`
+          this.lastUser = `${this.form.user} ${this.form.password}`
           this.userSaved = true
           this.sending = false
           this.clearForm()
