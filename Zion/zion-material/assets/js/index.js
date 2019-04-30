@@ -13,6 +13,7 @@ new Vue({
       form: {
         user: null,
         password: null,
+        remember: false
       },
       userSaved: false,
       sending: false,
@@ -45,7 +46,7 @@ new Vue({
       },
       saveUser () {
         this.sending = true
-
+        window.location.href = 'main.html'
         // Instead of this timeout, here you can call your API
         window.setTimeout(() => {
           this.lastUser = `${this.form.user} ${this.form.password}`
@@ -63,3 +64,10 @@ new Vue({
       }
     }
 })
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
