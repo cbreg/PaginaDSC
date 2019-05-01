@@ -20,66 +20,77 @@
           width: 230px;
           max-width: calc(100vw - 125px);
         }
+        img {
+          margin: 10px;
+          max-width: 60px;
+        }
+        .md-toolbar.md-theme-default.md-primary{
+          background-color: black !important;
+        }
+        .md-field.md-theme-default:before{
+          background-color:white!important;
+
+        }
+        .md-field.md-theme-default:after{
+          background-color: white !important;
+        }
+        .text-white{
+          color:white!important;
+        }
 </style>
 
 <body>
   <div id="app">
-        <template>
-                <div class="page-container">
-                  <md-app>
-                    <md-app-toolbar class="md-primary">
-                      <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-                        <md-icon>menu</md-icon>
-                      </md-button>
-                      <span class="md-title">My Title</span>
-                    </md-app-toolbar>
-              
-                    <md-app-drawer :md-active.sync="menuVisible" md-persistent="full">
-                      <md-toolbar class="md-transparent" md-elevation="0">
-                        <span>Navigation</span>
-              
-                        <div class="md-toolbar-section-end">
-                          <md-button class="md-icon-button md-dense" @click="toggleMenu">
-                            <md-icon>keyboard_arrow_left</md-icon>
-                          </md-button>
-                        </div>
-                      </md-toolbar>
-              
-                      <md-list>
-                        <md-list-item>
-                          <md-icon>move_to_inbox</md-icon>
-                          <span class="md-list-item-text">Inbox</span>
-                        </md-list-item>
-              
-                        <md-list-item>
-                          <md-icon>send</md-icon>
-                          <span class="md-list-item-text">Sent Mail</span>
-                        </md-list-item>
-              
-                        <md-list-item>
-                          <md-icon>delete</md-icon>
-                          <span class="md-list-item-text">Trash</span>
-                        </md-list-item>
-              
-                        <md-list-item>
-                          <md-icon>error</md-icon>
-                          <span class="md-list-item-text">Spam</span>
-                        </md-list-item>
-                      </md-list>
-                    </md-app-drawer>
-              
-                    <md-app-content>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea.
-                    </md-app-content>
-                  </md-app>
+    <template>
+        <div class="page-container md-layout-column">
+            <md-toolbar class="md-primary">
+              <md-button class="md-icon-button" @click="showNavigation = true">
+                <md-icon>menu</md-icon>
+              </md-button>
+              <span class="md-title"><img src="./assets/img/logo_branco.png"></span>
+              <div class="md-item md-toolbar-section-end">
+                <div>
+                    <md-field>
+                        <label class="text-white">Pesquisar</label>
+                        <md-input></md-input>
+                        <md-icon>search</md-icon>
+                      </md-field>
                 </div>
-              </template>
+              </div>
+            </md-toolbar>
+            <md-drawer :md-active.sync="showNavigation">
+              <md-toolbar class="md-transparent" md-elevation="0">
+                <span class="md-title">Zion</span>
+              </md-toolbar>
+              <md-list>
+                <md-list-item>
+                  <md-icon>move_to_inbox</md-icon>
+                  <span class="md-list-item-text">Inbox</span>
+                </md-list-item>
+        
+                <md-list-item>
+                  <md-icon>send</md-icon>
+                  <span class="md-list-item-text">Sent Mail</span>
+                </md-list-item>
+        
+                <md-list-item>
+                  <md-icon>delete</md-icon>
+                  <span class="md-list-item-text">Trash</span>
+                </md-list-item>
+        
+                <md-list-item>
+                  <md-icon>error</md-icon>
+                  <span class="md-list-item-text">Spam</span>
+                </md-list-item>
+              </md-list>
+            </md-drawer>
+    </template>
   </div>
   <script src="https://unpkg.com/vue"></script>
   <script src="assets/plugins/vue-material/vue-material.min.js"></script>
   <script src="assets/plugins/vuelidate/validators.min.js"></script>
   <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
-  <script src="assets/js/index.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 

@@ -7,15 +7,11 @@ const { required, minLength, maxLength} = window.validators
 
 new Vue({
   el: '#app',
-  name: 'PersistentFull',
-  data: () => ({
-    menuVisible: false
-  }),
-  methods: {
-    toggleMenu () {
-      this.menuVisible = !this.menuVisible
-    }
-  }
+  name: 'Temporary',
+    data: () => ({
+      showNavigation: false,
+      showSidepanel: false
+    })
 })
 
 function setCookie(cname, cvalue, exdays) {
