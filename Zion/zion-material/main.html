@@ -2,46 +2,18 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
-  <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/engine.scss">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/all.scss">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
+    <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<style lang="scss" scoped>
-        .md-app {
-          min-height: 350px;
-          border: 1px solid rgba(#000, .12);
-        }
-      
-        .md-drawer {
-          width: 230px;
-          max-width: calc(100vw - 125px);
-        }
-        img {
-          margin: 10px;
-          max-width: 60px;
-        }
-        .md-toolbar.md-theme-default.md-primary{
-          background-color: black !important;
-        }
-        .md-field.md-theme-default:before{
-          background-color:white!important;
 
-        }
-        .md-field.md-theme-default:after{
-          background-color: white !important;
-        }
-        .text-white{
-          color:white!important;
-        }
-</style>
-
-<body>
-  <div id="app">
-    <template>
+<body onload="verificarLogin()">
+    <div id="app">
+        <template>
         <div class="page-container md-layout-column">
             <md-toolbar class="md-primary">
               <md-button class="md-icon-button" @click="showNavigation = true">
@@ -49,10 +21,10 @@
               </md-button>
               <span class="md-title"><img src="./assets/img/logo_branco.png"></span>
               <div class="md-item md-toolbar-section-end">
-                <div>
+                <div class="text-white">
                     <md-field>
                         <label class="text-white">Pesquisar</label>
-                        <md-input></md-input>
+                        <md-input class="text-white"></md-input>
                         <md-icon>search</md-icon>
                       </md-field>
                 </div>
@@ -62,36 +34,120 @@
               <md-toolbar class="md-transparent" md-elevation="0">
                 <span class="md-title">Zion</span>
               </md-toolbar>
-              <md-list>
-                <md-list-item>
-                  <md-icon>move_to_inbox</md-icon>
-                  <span class="md-list-item-text">Inbox</span>
-                </md-list-item>
-        
-                <md-list-item>
-                  <md-icon>send</md-icon>
-                  <span class="md-list-item-text">Sent Mail</span>
-                </md-list-item>
-        
-                <md-list-item>
-                  <md-icon>delete</md-icon>
-                  <span class="md-list-item-text">Trash</span>
-                </md-list-item>
-        
-                <md-list-item>
-                  <md-icon>error</md-icon>
-                  <span class="md-list-item-text">Spam</span>
-                </md-list-item>
-              </md-list>
-            </md-drawer>
-    </template>
-  </div>
-  <script src="https://unpkg.com/vue"></script>
-  <script src="assets/plugins/vue-material/vue-material.min.js"></script>
-  <script src="assets/plugins/vuelidate/validators.min.js"></script>
-  <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
-  <script src="assets/js/main.js"></script>
+              <md-list :md-expand-single="expandContents">
+        <md-list-item md-expand :md-expanded.sync="expandCont">
+          <span class="md-list-item-text">Conteúdos</span>
+          <md-list slot="md-expand">
+            <md-list-item>Perguntas & Respostas</md-list-item>
+            <md-list-item>Palavras</md-list-item>
+            <md-list-item>Dinâmicas</md-list-item>
+            <md-list-item>Dicas</md-list-item>
+          </md-list>
+        </md-list-item>
+        <md-list-item >
+           <span class="md-list-item-text">Convite</span>
+        </md-list-item>
+        <md-list-item>
+          <span class="md-list-item-text">Perfil</span>
+        </md-list-item>
+        <md-list-item>
+          <span class="md-list-item-text">Sobre nós</span>
+        </md-list-item>
+        <md-list-item>
+          <span class="md-list-item-text">Ajuda</span>
+        </md-list-item>
+      </md-list>
+     </md-drawer>
+     <main  class="container">
+        <div class="row">
+          <div class="col-12 col-md-6">
+              <md-card>
+                  <md-card-header>
+                    <div class="md-title">Que bom que você está aqui</div>
+                  </md-card-header>
+                  <md-card-content>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+                  </md-card-content>
+              </md-card>
 
+              <form novalidate class="md-layout" @submit.prevent="validateContent">
+                  <md-card class="size-100">
+                    <md-card-header>
+                      <div class="md-title">Criar conteúdo</div>
+                    </md-card-header>
+                  <md-card-content>
+                      <div>
+                          <label>* O que você deseja compartilhar?</label>
+                          <md-radio v-model="type_content" type="radio" name="type_content" v-bind:value="'Pergunta'">Pergunta</md-radio>
+                          <md-radio v-model="type_content" type="radio" name="type_content" v-bind:value="'Palavra'">Palavra</md-radio>
+                          <md-radio v-model="type_content" type="radio" name="type_content" v-bind:value="'Dinâmica'">Dinâmica</md-radio>
+                          <md-radio v-model="type_content" type="radio" name="type_content" v-bind:value="'Dica'">Dica</md-radio>
+                        </div>
+                      <md-field :class="getValidationClass('title')">
+                        <label for="title">* Título</label>
+                        <md-input name="title" type="text" id="title" autocomplete="family-name"
+                          v-model="form.title" :disabled="sending"></md-input>
+                        <span class="md-error" v-if="!$v.form.title.required">Título é obrigatório</span>
+                      </md-field>
+                      <md-field :class="getValidationClass('description')">
+                          <label for="description">* Descrição</label>
+                          <md-textarea name="description"  id="description" autocomplete="family-name"
+                            v-model="form.description" :disabled="sending"></md-textarea>
+                          <span class="md-error" v-if="!$v.form.description.required">Descrição é obrigatório</span>
+                      </md-field>
+                    </md-card-content>
+                    <md-card-actions md-alignment="space-between">
+                        <div>
+                          <md-button @click="clearForm">CANCELAR</md-button>
+                        </div>
+                        <div>
+                          <md-button type="submit" class="md-raised md-accent" :disabled="sending">COMPARTILHAR</md-button>
+                        </div>
+                      </md-card-actions>
+                  </md-card>
+                </form>
+          </div>
+          <div class="col-12 col-md-6">
+              <md-card>
+                  <md-card-header>
+                    <div class="md-title">Últimos conteúdos compartilhados</div>
+                  </md-card-header>
+
+                  <md-card-content>
+                      <div>
+                          <md-table v-model="searched" md-sort="name" md-sort-order="asc"  md-fixed-header>
+                            <md-table-empty-state
+                              md-label="Nenhum contéudo encontrado até o momento ;("
+                              :md-description="`Compartilhe agora mesmo suas experiências :)`">
+                            </md-table-empty-state>
+                            <md-table-row slot="md-table-row" slot-scope="{ item }">
+                              <md-table-cell md-label="Usuário" md-sort-by="user" md-numeric>{{ item.user }}</md-table-cell>
+                              <md-table-cell md-label="Tipo conteúdo" md-sort-by="type_content">{{ item.type_content }}</md-table-cell>
+                              <md-table-cell md-label="Título" md-sort-by="title">{{ item.title }}</md-table-cell>
+                              <md-table-cell md-label="Contéudo" md-sort-by="description">{{ item.description }}</md-table-cell>
+                            </md-table-row>
+                          </md-table>
+                        </div> 
+                      </md-card-content>
+                </md-card>
+          </div>
+        </div>
+     </main>
+    </template>
+    </div>
+    <footer>
+        <p>
+            Caroline Belli Regalin
+        </p>
+    </footer>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="assets/plugins/vue-material/vue-material.min.js"></script>
+    <script src="assets/plugins/vuelidate/validators.min.js"></script>
+    <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

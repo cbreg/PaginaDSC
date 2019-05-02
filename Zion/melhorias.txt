@@ -1,0 +1,8 @@
+Pesquisa quando digita colocar o texto em branco
+Campos quando clicar, colocar tudo laranja inclusive o texto
+Adicionar classe quando clica no menu, para ficar selecionado
+Botão para logout
+Pagina de login responsiva
+Ajustar css do texto do footer
+Cores e tags para o tipo do conteudo
+Hospedar no git

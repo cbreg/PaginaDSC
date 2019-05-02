@@ -2,132 +2,17 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
-  <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/engine.scss">
-  <link rel="stylesheet" href="assets/plugins/vue-material/theme/all.scss">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+    <link rel="stylesheet" href="assets/plugins/vue-material/vue-material.min.css">
+    <link rel="stylesheet" href="assets/plugins/vue-material/theme/default.css">
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
-<style lang="scss" scoped>
-  .md-accent {
-    background-color: #FF8000 !important;
-  }
-
-  .md-card.md-theme-default {
-    width: 700px;
-    display: inline-block;
-    vertical-align: top;
-
-  }
-
-  img {
-    margin-bottom: 16px;
-    max-width: 80px;
-  }
-
-  .title {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  form {
-    margin-bottom: 60px;
-  }
-
-  body {
-    background-color: black;
-  }
-
-  .md-content {
-    z-index: 1;
-    padding: 40px;
-    width: 100%;
-    position: relative;
-  }
-
-  .centered-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 100vh;
-    margin-left: 30%;
-  }
-
-  /* The container */
-  .container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-
-  /* Create a custom checkbox */
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-  }
-
-  /* On mouse-over, add a grey background color */
-  .container:hover input~.checkmark {
-    background-color: #ccc;
-  }
-
-  /* When the checkbox is checked, add a blue background */
-  .container input:checked~.checkmark {
-    background-color: #FF8000;
-  }
-
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-
-  /* Show the checkmark when checked */
-  .container input:checked~.checkmark:after {
-    display: block;
-  }
-
-  /* Style the checkmark/indicator */
-  .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-</style>
 
 <body>
-  <div id="app">
-    <template>
+    <div id="app">
+        <template>
       <div class="centered-container">
         <form novalidate class="md-layout" @submit.prevent="validateUser">
           <md-card class="md-layout-item md-size-50 md-small-size-100">
@@ -148,7 +33,7 @@
                 <span class="md-error" v-if="!$v.form.password.required">Senha é obrigatória</span>
               </md-field>
               <label class="container">Lembrar senha
-                <input type="checkbox">
+                <input type="checkbox" id="remember">
                 <span class="checkmark"></span>
               </label>
               <span class="md-caption">Essa é uma plataforma de apoio a células
@@ -172,14 +57,15 @@
           </md-card>
         </form>
       </div>
+      
     </template>
-  </div>
-  <script src="https://unpkg.com/vue"></script>
-  <script src="assets/plugins/vue-material/vue-material.min.js"></script>
-  <script src="assets/plugins/vuelidate/validators.min.js"></script>
-  <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
-  <script src="assets/js/index.js"></script>
+    </div>
 
+    <script src="https://unpkg.com/vue"></script>
+    <script src="assets/plugins/vue-material/vue-material.min.js"></script>
+    <script src="assets/plugins/vuelidate/validators.min.js"></script>
+    <script src="assets/plugins/vuelidate/vuelidate.min.js"></script>
+    <script src="assets/js/login.js"></script>
 </body>
 
 </html>
