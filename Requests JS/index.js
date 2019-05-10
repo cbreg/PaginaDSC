@@ -1,23 +1,24 @@
 var BASE_URL = 'http://dummy.restapiexample.com/api/v1';
 
 function deleteById() {
-    //pergunte ao usuário se ele deseja remover aquele usuário (apresente o nome), exclua-o e remova-o da tabela
 
-    var id_empregado = document.getElementById("id_emp").value;
+    var id_employee = document.getElementById("id_emp").value;
 
-    if (!id_empregado) {
+    if (!id_employee) {
         alert('Please, fill in the field =)');
         return;
     }
 
     if (confirm("Are you sure delete this employee?")) {
         $.ajax({
-            url: BASE_URL + '/delete/' + id_empregado,
+            url: BASE_URL + '/delete/' + id_employee,
             type: 'DELETE',
             success: function(response) {
+                alert('Employee deleted');
                 console.log(response);
             },
             error: function(msg) {
+                alert('Not deleted');
                 console.log(msg);
             }
         })
@@ -97,20 +98,24 @@ function get() {
 }
 
 function put() {
-
+    //nao ta funcionando
     var id = document.getElementById("id").value;
     var name = document.getElementById("name").value;
     var salary = document.getElementById("salary").value;
     var age = document.getElementById("age").value;
-    //tere o registro e mostre o elemento alterado na tabela junto aos elementos do GET.
+
     $.ajax({
         url: BASE_URL + '/update/' + id,
-        type: 'PUT',
-        dataType: 'JSON',
-        data: { 'name': name, 'salary': salary, 'age': age },
+        data: JSON.stringify({ 'name': name, 'salary': salary, 'age': age }),
+        dataType: "json",
+        contentType: "json",
         success: function(response) {
-            console.log(response);
-            insertEmployeeInTable(response);
+            var employee = {
+                "employee_name": response['name'],
+                "employee_salary": response['salary'],
+                "id": response['id']
+            };
+            insertEmployeeInTable(employee);
             alert('Success! Yeeep');
         },
         error: function(msg) {
@@ -122,21 +127,30 @@ function put() {
 
 
 function post() {
-    // insira o elemento e mostre o elemento inserido na tabela junto aos elementos do GET.
-    //PROBLEMA
-    var id = document.getElementById("id").value;
+
     var name = document.getElementById("name").value;
     var salary = document.getElementById("salary").value;
     var age = document.getElementById("age").value;
-
+    var id = document.getElementById("id").value;
     $.ajax({
         url: BASE_URL + '/create',
         type: 'POST',
-        dataType: 'JSON',
-        data: { "id": id, 'employee_name': name, 'employee_salary': salary, 'employee_age': age },
+        data: JSON.stringify({
+            "name": name,
+            "salary": salary,
+            "age": age,
+            "id": id
+        }),
+        dataType: "json",
+        contentType: "json",
         success: function(response) {
             console.log(response);
-            insertEmployeeInTable(response);
+            var employee = {
+                "employee_name": response['name'],
+                "employee_salary": response['salary'],
+                "id": response['id']
+            };
+            insertEmployeeInTable(employee);
             alert('Success! Yeeep');
         },
         error: function(msg) {
