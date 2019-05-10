@@ -1,16 +1,45 @@
 var BASE_URL = 'http://dummy.restapiexample.com/api/v1';
 
-function deleteId() {
-    $.ajax({
-        url: BASE_URL + '/delete/2',
-        type: 'DELETE',
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(msg) {
-            console.log(msg);
-        }
-    })
+function deleteById() {
+    //pergunte ao usuário se ele deseja remover aquele usuário (apresente o nome), exclua-o e remova-o da tabela
+
+    var id_empregado = document.getElementById("id_emp").value;
+
+    if (!id_empregado) {
+        alert('Please, fill in the field =)');
+        return;
+    }
+
+    if (confirm("Are you sure delete this employee?")) {
+        $.ajax({
+            url: BASE_URL + '/delete/' + id_empregado,
+            type: 'DELETE',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(msg) {
+                console.log(msg);
+            }
+        })
+    }
+
+}
+
+function deleteByName() {
+    //pergunte ao usuário se ele deseja remover aquele usuário (apresente o nome), exclua-o e remova-o da tabela
+    //buscar nao
+    if (confirm("Are you sure delete this employee?")) {
+        $.ajax({
+            url: BASE_URL + '/delete/2',
+            type: 'DELETE',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(msg) {
+                console.log(msg);
+            }
+        })
+    }
 }
 
 function getAll() {
@@ -73,7 +102,7 @@ function put() {
     var name = document.getElementById("name").value;
     var salary = document.getElementById("salary").value;
     var age = document.getElementById("age").value;
-
+    //tere o registro e mostre o elemento alterado na tabela junto aos elementos do GET.
     $.ajax({
         url: BASE_URL + '/update/' + id,
         type: 'PUT',
@@ -93,7 +122,8 @@ function put() {
 
 
 function post() {
-
+    // insira o elemento e mostre o elemento inserido na tabela junto aos elementos do GET.
+    //PROBLEMA
     var id = document.getElementById("id").value;
     var name = document.getElementById("name").value;
     var salary = document.getElementById("salary").value;
