@@ -1,8 +1,11 @@
 Pesquisa quando digita colocar o texto em branco
-Campos quando clicar, colocar tudo laranja inclusive o texto
+Campos quando clicar, colocar tudo laranja inclusive o texto da label
 Adicionar classe quando clica no menu, para ficar selecionado
-Bot�o para logout
+Botão para logout
 Pagina de login responsiva
 Ajustar css do texto do footer
-Cores e tags para o tipo do conteudo
-Hospedar no git
+Cores e tags para o tipo do conteudo na tabela de conteudos
+No cookie adicionar nome do usuário, quando for adicionar um novo conteúdo, adicionar o usuário que criou o registro
+Loading na tela de login
+Loading na tela principal para salvar
+
