@@ -123,6 +123,7 @@ function put() {
         data: JSON.stringify(data),
         type: 'PUT',
         success: function(response) {
+            clearEmployee();
             listAll();
             alert('Success! Yeeep');
         },
@@ -148,6 +149,7 @@ function post() {
         contentType: "json",
         success: function(response) {
             console.log(response);
+            clearEmployee();
             listAll();
             alert('Success! Yeeep');
         },
@@ -156,4 +158,11 @@ function post() {
         }
     })
 
+}
+
+function clearEmployee() {
+    document.getElementById("name").value = "";
+    document.getElementById("salary").value = "";
+    document.getElementById("salary").value = "";
+    document.getElementById("id").value = "";
 }
