@@ -1,0 +1,29 @@
+table,
+th,
+td {
+    border: 1px solid pink;
+}
+
+body,
+button {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+h1 {
+    color: pink;
+}
+
+button {
+    border: none;
+    background-color: pink;
+    color: grey;
+    width: 150px;
+    height: 50px;
+}
+
+input {
+    width: 200px;
+    height: 40px;
+    font-size: 30px;
+}

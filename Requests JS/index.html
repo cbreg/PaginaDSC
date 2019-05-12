@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -28,16 +29,13 @@
                 </tbody>
             </table>
         </section>
-        </br>
         <section>
             <h1>GET by ID</h1>
             <label for="id_employee">ID</label>
             <input type="text" id="id_employee" placeholder="ID employee">
-            <button onclick="get()">Buscar</button>
+            <button onclick="get()">SEARCH</button>
             <p id="info_employee"></p>
         </section>
-        </br>
-        </br>
         <section>
             <h1>POST & PUT</h1>
             <label for="id">ID</label>
@@ -45,25 +43,24 @@
             <label for="name">Name</label>
             <input type="text" id="name" placeholder="Name" required>
             <label for="salary">Salary</label>
-            <input type="text" id="salary" placeholder="salary" required>
+            <input type="text" id="salary" placeholder="Salary" required>
             <label for="age">Age</label>
             <input type="text" id="age" placeholder="Age" required>
             <button onclick="post()">POST</button>
             <button onclick="put()">PUT</button>
         </section>
-        </br>
-        </br>
         <section>
             <h1>DELETE by ID</h1>
+            <label>ID</label>
             <input type="text" id="id_emp" placeholder="ID">
             <button onclick="deleteById()">DELETE</button>
         </section>
         <section>
-            <h1>DELETE by name</h1>
+            <h1>DELETE by Name</h1>
+            <label>Name</label>
             <input type="text" id="name_emp" placeholder="Name">
             <button onclick="deleteByName()">DELETE</button>
         </section>
-        </br>
         <script src="index.js"></script>
 </body>
 
