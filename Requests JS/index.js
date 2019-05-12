@@ -1,20 +1,74 @@
 var BASE_URL = 'http://dummy.restapiexample.com/api/v1';
 
-function deleteById() {
+function listAll() {
+    var employees = getAll();
+    var old_tbody = document.getElementById("empregados").getElementsByTagName('tbody')[0];
+    var new_tbody = document.createElement('tbody');
+    old_tbody.parentNode.replaceChild(new_tbody, old_tbody);
+    if (employees) {
+        for (i = 0; i < employees.length; i++) {
+            insertEmployeeInTable(employees[i]);
+        }
+    }
 
+}
+
+function getAll() {
+    var jqXHR = $.ajax({
+        url: BASE_URL + '/employees',
+        type: 'GET',
+        async: false,
+        error: function(msg) {
+            console.log(msg);
+        }
+    })
+    return JSON.parse(jqXHR.responseText);
+}
+
+function insertEmployeeInTable(employee) {
+    var table = document.getElementById("empregados").getElementsByTagName('tbody')[0];
+    var row = table.insertRow(0);
+    row.insertCell(0).innerHTML = employee['id'];
+    row.insertCell(1).innerHTML = employee['employee_name'];
+    row.insertCell(2).innerHTML = employee['employee_salary'];
+}
+
+function deleteById() {
     var id_employee = document.getElementById("id_emp").value;
 
     if (!id_employee) {
         alert('Please, fill in the field =)');
         return;
     }
+    deleteEmployee(id_employee);
+}
 
+function deleteByName() {
+    var name_employee = document.getElementById("name_emp").value;
+    var employee = searchEmployeeByName(name_employee);
+
+    if (employee.length > 0) {
+        deleteEmployee(employee[0]['id']);
+    } else {
+        alert('Employee not found');
+    }
+}
+
+function searchEmployeeByName(name) {
+    var employees = getAll();
+    return employees.filter(
+        function(emp) { return emp.employee_name == name }
+    );
+}
+
+function deleteEmployee(id_employee) {
     if (confirm("Are you sure delete this employee?")) {
         $.ajax({
             url: BASE_URL + '/delete/' + id_employee,
             type: 'DELETE',
             success: function(response) {
                 alert('Employee deleted');
+                listAll();
                 console.log(response);
             },
             error: function(msg) {
@@ -23,49 +77,9 @@ function deleteById() {
             }
         })
     }
-
 }
-
-function deleteByName() {
-    //pergunte ao usuário se ele deseja remover aquele usuário (apresente o nome), exclua-o e remova-o da tabela
-    //buscar nao
-    if (confirm("Are you sure delete this employee?")) {
-        $.ajax({
-            url: BASE_URL + '/delete/2',
-            type: 'DELETE',
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(msg) {
-                console.log(msg);
-            }
-        })
-    }
-}
-
-function getAll() {
-
-    $.ajax({
-        url: BASE_URL + '/employees',
-        type: 'GET',
-        success: function(reponse) {
-
-            reponse = JSON.parse(reponse);
-            for (i = 0; i <= 10; i++) {
-                console.log(reponse[i]);
-                insertEmployeeInTable(reponse[i]);
-            }
-        },
-        error: function(msg) {
-            console.log(msg);
-        }
-    })
-
-}
-
 
 function get() {
-
     var id_empregado = document.getElementById("id_employee").value;
 
     if (!id_empregado) {
@@ -98,73 +112,48 @@ function get() {
 }
 
 function put() {
-    //nao ta funcionando
     var id = document.getElementById("id").value;
-    var name = document.getElementById("name").value;
-    var salary = document.getElementById("salary").value;
-    var age = document.getElementById("age").value;
-
+    var data = {
+        'name': document.getElementById("name").value,
+        'salary': document.getElementById("salary").value,
+        'age': document.getElementById("age").value
+    };
     $.ajax({
         url: BASE_URL + '/update/' + id,
-        data: JSON.stringify({ 'name': name, 'salary': salary, 'age': age }),
-        dataType: "json",
-        contentType: "json",
+        data: JSON.stringify(data),
+        type: 'PUT',
         success: function(response) {
-            var employee = {
-                "employee_name": response['name'],
-                "employee_salary": response['salary'],
-                "id": response['id']
-            };
-            insertEmployeeInTable(employee);
+            listAll();
             alert('Success! Yeeep');
         },
         error: function(msg) {
-            console.log(msg);
-            alert('Ooops, an error occour');
+            alert('Ooops, an error occour. Error: ' + msg);
         }
     })
 }
 
 
 function post() {
-
-    var name = document.getElementById("name").value;
-    var salary = document.getElementById("salary").value;
-    var age = document.getElementById("age").value;
-    var id = document.getElementById("id").value;
+    var data = {
+        "name": document.getElementById("name").value,
+        "salary": document.getElementById("salary").value,
+        "age": document.getElementById("age").value,
+        "id": document.getElementById("id").value
+    };
     $.ajax({
         url: BASE_URL + '/create',
         type: 'POST',
-        data: JSON.stringify({
-            "name": name,
-            "salary": salary,
-            "age": age,
-            "id": id
-        }),
+        data: JSON.stringify(data),
         dataType: "json",
         contentType: "json",
         success: function(response) {
             console.log(response);
-            var employee = {
-                "employee_name": response['name'],
-                "employee_salary": response['salary'],
-                "id": response['id']
-            };
-            insertEmployeeInTable(employee);
+            listAll();
             alert('Success! Yeeep');
         },
         error: function(msg) {
-            console.log(msg);
-            alert('Não foi possível criar o usuário');
+            alert('Ooops, an error occour. Error: ' + msg);
         }
     })
 
-}
-
-function insertEmployeeInTable(employee) {
-    var table = document.getElementById("empregados").getElementsByTagName('tbody')[0];
-    var row = table.insertRow(0);
-    row.insertCell(0).innerHTML = employee['id'];
-    row.insertCell(1).innerHTML = employee['employee_name'];
-    row.insertCell(2).innerHTML = employee['employee_salary'];
 }
