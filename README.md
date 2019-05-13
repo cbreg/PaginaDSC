@@ -9,5 +9,5 @@ Página de login e uma página principal de uma plataforma de apoio a células d
 Utilizado o framework VueMaterial para a criação da UI.
 
 ## Requests JS
-Consumindo uma API REST por AJAX
+Consumindo uma API REST por AJAX.
 
